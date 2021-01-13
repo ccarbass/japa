@@ -2,6 +2,8 @@ package galerie.entity;
 import javax.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 // Un exemple d'entité
 // On utilise Lombok pour auto-générer getter / setter / toString...
 // cf. https://examples.javacodegeeks.com/spring-boot-with-lombok/
@@ -18,6 +20,7 @@ public class Galerie {
     @Column(unique=true)
     @NonNull
     private String adresse;
-    
-    // TODO : Mettre en oeuvre la relation oneToMany vers Exposition
-}
+
+    @OneToMany(mappedBy = "oraganisateur", cascade= CascadeType.PERSIST)
+    @ToString.Exclude
+    private List<Exposition> expositions;}
